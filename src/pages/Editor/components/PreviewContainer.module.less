@@ -1,0 +1,24 @@
+.previewer, .empty {
+    width: 100%;
+    height: calc(100vh-28px);
+    position: relative;
+    z-index: 1;
+    &:hover, &.active {
+        border: 1px solid red;
+    }
+
+}
+.previewer {
+    *[pre-comp-wrap] {
+        &:hover, &.active {
+            border: 1px solid red;
+        }
+        
+    }
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
