@@ -3,7 +3,7 @@ import { useState } from "react"
 
 import config from '../config'
 import { DragEndEvent } from "@dnd-kit/core";
-import { EDITOR_ID } from "../Constant";
+import { EDITOR_ID } from "../constant";
 
 import treeTool from 'tree-tool';
 
@@ -19,7 +19,7 @@ export default () => {
             const newNode = {
                 ...newData,
                 id: key,
-                dropId: key
+                dropId: newData.dropId ? key : undefined,
             }
             switch (over.id) {
                 case EDITOR_ID:

@@ -1,13 +1,11 @@
 import { Layout } from "antd"
 import { useSearchParams } from "react-router-dom"
 import CompSelector from "./components/CompSelector"
-import PreviewContainer from "./components/previewContainer"
+import Configurator from "./components/Configurator"
+import PreviewContainer from "./components/PreviewContainer"
 
-import config from './config'
 
 import { DndContext } from "@dnd-kit/core";
-import { useState } from "react";
-import ButtonConfig from "./config/Button.config"
 import useSchemaHook from "./hooks/useSchemaHook"
 
 const {Content, Sider} = Layout;
@@ -41,6 +39,13 @@ const Editor = () => {
             }}>
                 <PreviewContainer pageSchema={schema} ></PreviewContainer>
             </Content>
+            <Sider style={{
+                background: containerBG,
+                marginLeft: '10px',
+                borderRight: '1px solid #f5f5f5'
+            }}>
+                <Configurator />
+            </Sider>
         </DndContext>
     </Layout>
 }

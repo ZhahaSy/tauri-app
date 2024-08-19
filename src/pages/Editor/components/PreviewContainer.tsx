@@ -4,7 +4,7 @@ import createBySchema from "../creator"
 import { Empty } from "antd"
 
 import Styles from './PreviewContainer.module.less'
-import { EDITOR_ID } from '../Constant'
+import { EDITOR_ID } from '../constant'
 
 interface PreviewContainerProps {
     pageSchema: PageSchemaProps[]

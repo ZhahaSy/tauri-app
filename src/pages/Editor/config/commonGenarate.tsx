@@ -6,6 +6,7 @@ export const genPreviewComp = (elm: any,children: React.ReactNode, props: any) =
     const mergeChild = genCommonComp(elm, children, {
         ...props,
     })
+    
     if (props.dropId) {
         return <Droppable id={props.dropId} style={{display: 'inline-block'}} pre-comp-wrap="111">{mergeChild}</Droppable>
     }
