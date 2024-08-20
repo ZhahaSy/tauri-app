@@ -4,16 +4,18 @@
     position: relative;
     z-index: 1;
     &:hover, &.active {
-        border: 1px solid red;
+        border: 1px solid #2191f3;
     }
 
 }
 .previewer {
     *[pre-comp-wrap] {
-        &:hover, &.active {
-            border: 1px solid red;
+        &:hover {
+            border: 1px solid #2191f3;
         }
-        
+        &.active {
+            border: 1px dashed #2191f3;
+        }
     }
 }
 

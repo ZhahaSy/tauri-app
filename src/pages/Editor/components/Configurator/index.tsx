@@ -1,13 +1,19 @@
-import { PageSchemaProps } from "@/entities/Schema";
 import useEditorStore from "@/store/useEditorStore";
+import FormRender from "./FormRender";
 
 interface ConfiguratorProps {
+    updateSchemaProps: (id: string, data: any) => void
 }
-const Configurator: React.FC<ConfiguratorProps> =  (props) => {
+const Configurator: React.FC<ConfiguratorProps> =  ({updateSchemaProps}) => {
     const {activeComp} = useEditorStore(state => state)
-    console.log(props);
+
+    const handleChange = (values: any) => {
+        updateSchemaProps(activeComp?.id!, values)
+    }
     
-    return activeComp?.label
+    return <div style={{padding: '10px'}}>
+        <FormRender attrs={activeComp?.attrs || []} onChange={handleChange} />
+    </div>
 }
 
 export default Configurator;

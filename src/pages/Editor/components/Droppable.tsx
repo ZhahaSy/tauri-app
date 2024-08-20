@@ -1,9 +1,9 @@
 import { useDroppable } from "@dnd-kit/core";
 import { CSSProperties, PropsWithChildren } from "react";
-
 interface DroppableProps {
   id: string,
   style?: CSSProperties,
+  className?: string,
 }
 
 const  Droppable: React.FC<PropsWithChildren<DroppableProps>> = (props) => {
@@ -12,7 +12,7 @@ const  Droppable: React.FC<PropsWithChildren<DroppableProps>> = (props) => {
   });
   
   const style = {
-    background: isOver ? "green" : undefined,
+    background: isOver ? "gray" : undefined,
     ...props.style,
   };
 

@@ -5,7 +5,8 @@ export interface PageSchemaProps {
     element: React.ReactNode,
     children?: PageSchemaProps[],
     dropId?: string,
-    attrs?: CompAttr[]
+    attrs?: CompAttr[],
+    props?: any,
 }
 
 interface Option {

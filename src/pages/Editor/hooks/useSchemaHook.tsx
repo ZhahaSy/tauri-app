@@ -45,8 +45,21 @@ export default () => {
         }
     }
 
+    const updateSchemaProps = (id: string, newData: any) => {
+        const curNode = treeTool.findNode(schema, (node: PageSchemaProps) => {
+            return node.id === id
+        })
+        if (curNode.props){
+            curNode.props = {...curNode?.props || {}, ...newData || {}}
+        } else {
+            curNode.props = newData
+        }
+        setSchema([...schema])
+    }
+
     return {
         schema,
         handleDragEnd,
+        updateSchemaProps,
     }
 }

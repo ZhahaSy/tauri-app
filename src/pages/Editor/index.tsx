@@ -17,7 +17,7 @@ const Editor = () => {
 
     const id = params.get('id')
 
-    const {schema, handleDragEnd} = useSchemaHook();
+    const {schema, handleDragEnd, updateSchemaProps} = useSchemaHook();
 
 
     return <Layout 
@@ -39,12 +39,12 @@ const Editor = () => {
             }}>
                 <PreviewContainer pageSchema={schema} ></PreviewContainer>
             </Content>
-            <Sider style={{
+            <Sider width={400} style={{
                 background: containerBG,
                 marginLeft: '10px',
                 borderRight: '1px solid #f5f5f5'
             }}>
-                <Configurator />
+                <Configurator updateSchemaProps={updateSchemaProps} />
             </Sider>
         </DndContext>
     </Layout>
