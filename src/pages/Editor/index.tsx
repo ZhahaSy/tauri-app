@@ -27,7 +27,7 @@ const Editor = () => {
             }}
     >
         <DndContext onDragEnd={handleDragEnd}>
-            <Sider style={{
+            <Sider width='15%' style={{
                 background: containerBG,
                 marginRight: '10px',
                 borderRight: '1px solid #f5f5f5'
@@ -39,7 +39,7 @@ const Editor = () => {
             }}>
                 <PreviewContainer pageSchema={schema} ></PreviewContainer>
             </Content>
-            <Sider width={400} style={{
+            <Sider width='15%' style={{
                 background: containerBG,
                 marginLeft: '10px',
                 borderRight: '1px solid #f5f5f5'
