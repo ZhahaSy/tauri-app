@@ -4,9 +4,19 @@ import { Button } from "antd";
 export default {
   label: "Button",
   key: "vol-btn",
-  element: <Button>default</Button>,
+  element: <Button children="按钮" />,
   dropId: "Button",
   attrs: [
+    {
+      label: "按钮内容",
+      name: "children",
+      type: AttrType.TEXT,
+    },
+    {
+      label: "图标",
+      name: "children",
+      type: AttrType.ICON_SELECT,
+    },
     {
       label: "是否开启汉字空格",
       name: "autoInsertSpace",
@@ -18,7 +28,7 @@ export default {
       type: AttrType.SWITCH,
     },
     {
-      label: "是否 dange",
+      label: "是否 danger",
       name: "danger",
       type: AttrType.SWITCH,
     },
@@ -40,34 +50,40 @@ export default {
     {
       label: "形状",
       name: "shape",
-      type: AttrType.RADIO,
-      options: [
-        { label: "default", value: "default" },
-        { label: "circle", value: "circle" },
-        { label: "round", value: "round" },
-      ],
+      type: AttrType.RADIO_GROUP,
+      fieldProps: {
+        options: [
+          { label: "default", value: "default" },
+          { label: "circle", value: "circle" },
+          { label: "round", value: "round" },
+        ],
+      }
     },
     {
         label: "类型",
         name: "type",
-        type: AttrType.RADIO,
-        options: [
-          { label: "primary", value: "primary" },
-          { label: "dashed", value: "dashed" },
-          { label: "link", value: "link" },
-          { label: "text", value: "text" },
-          { label: "default", value: "default" },
-        ],
+        type: AttrType.RADIO_GROUP,
+        fieldProps: {
+          options: [
+            { label: "primary", value: "primary" },
+            { label: "dashed", value: "dashed" },
+            { label: "link", value: "link" },
+            { label: "text", value: "text" },
+            { label: "default", value: "default" },
+          ],
+        }
       },
       {
         label: "大小",
         name: "size",
-        type: AttrType.RADIO,
-        options: [
-          { label: "large", value: "large" },
-          { label: "middle", value: "middle" },
-          { label: "small", value: "small" },
-        ],
+        type: AttrType.RADIO_GROUP,
+        fieldProps: {
+          options: [
+            { label: "large", value: "large" },
+            { label: "middle", value: "middle" },
+            { label: "small", value: "small" },
+          ],
+        }
       },
       
   ],

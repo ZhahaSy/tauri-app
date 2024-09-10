@@ -1,5 +1,5 @@
 import useEditorStore from "@/store/useEditorStore";
-import FormRender from "./FormRender";
+import FormRender from "@/components/FormRender";
 
 interface ConfiguratorProps {
     updateSchemaProps: (id: string, data: any) => void

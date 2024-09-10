@@ -19,13 +19,16 @@ export enum AttrType {
     SWITCH,
     NUMBER,
     RADIO,
-    CHEBOX,
+    CHECKBOX,
     CODE,
-    STRING_LIST
+    STRING_LIST,
+    RADIO_GROUP,
+    ICON_SELECT,
 }
 export interface CompAttr {
     type: AttrType,
     label: string,
     name: string,
     options?: Option[],
+    fieldProps: Record<string, any>
 }
