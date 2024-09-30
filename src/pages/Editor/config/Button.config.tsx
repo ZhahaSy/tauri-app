@@ -11,41 +11,49 @@ export default {
       label: "按钮内容",
       name: "children",
       type: AttrType.TEXT,
+      initVal: '按钮'
     },
     {
       label: "图标",
-      name: "children",
+      name: "icon",
       type: AttrType.ICON_SELECT,
+      initVal: null,
     },
     {
       label: "是否开启汉字空格",
       name: "autoInsertSpace",
       type: AttrType.SWITCH,
+      initVal: false,
     },
     {
       label: "是否 block",
       name: "block",
       type: AttrType.SWITCH,
+      initVal: true,
     },
     {
       label: "是否 danger",
       name: "danger",
       type: AttrType.SWITCH,
+      initVal: false,
     },
     {
       label: "disabled",
       name: "disabled",
       type: AttrType.SWITCH,
+      initVal: false,
     },
     {
       label: "幽灵模式",
       name: "ghost",
       type: AttrType.SWITCH,
+      initVal: false,
     },
     {
       label: "href",
       name: "href",
       type: AttrType.TEXT,
+      initVal: false,
     },
     {
       label: "形状",
@@ -57,7 +65,8 @@ export default {
           { label: "circle", value: "circle" },
           { label: "round", value: "round" },
         ],
-      }
+      },
+      initVal: undefined,
     },
     {
         label: "类型",
@@ -71,7 +80,8 @@ export default {
             { label: "text", value: "text" },
             { label: "default", value: "default" },
           ],
-        }
+        },
+        initVal: undefined,
       },
       {
         label: "大小",
@@ -83,7 +93,8 @@ export default {
             { label: "middle", value: "middle" },
             { label: "small", value: "small" },
           ],
-        }
+        },
+        initVal: undefined,
       },
       
   ],

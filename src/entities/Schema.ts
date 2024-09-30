@@ -1,3 +1,5 @@
+import { FormItemProps } from "antd";
+
 export interface PageSchemaProps {
     id: string,
     label: string,
@@ -21,14 +23,16 @@ export enum AttrType {
     RADIO,
     CHECKBOX,
     CODE,
-    STRING_LIST,
+    LIST,
     RADIO_GROUP,
     ICON_SELECT,
+    SELECT,
 }
 export interface CompAttr {
     type: AttrType,
     label: string,
-    name: string,
+    name: FormItemProps['name'],
     options?: Option[],
-    fieldProps: Record<string, any>
+    fieldProps: Record<string, any>,
+    initVal: Record<string, any>,
 }

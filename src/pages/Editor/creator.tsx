@@ -12,7 +12,7 @@ const createBySchema = (schema: PageSchemaProps[]) => {
 
         const mergeOnClick =  (e) => {
             setActiveComp(curNode)
-        } 
+        }
 
         const cls = activeComp?.id === id ? Styles.active : ''
         return genPreviewComp(element, children ? createBySchema(children) : null, {dropId: dropId, onClick: mergeOnClick, ...curNode.props, className: cls,})

@@ -12,6 +12,9 @@ const compList = [
     },
     {
         label: 'Input',
+    },
+    {
+        label: 'Form',
     }
 ]
 

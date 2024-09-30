@@ -1,6 +1,8 @@
 import { AttrType } from "@/entities/Schema";
-import { Checkbox, Input, InputNumber, Radio, Switch } from "antd";
+import { Checkbox, Input, InputNumber, Radio, Select, Switch } from "antd";
 import IconSelect from "../CustomField/IconSelect";
+import FormList from "antd/es/form/FormList";
+import { FormListRender } from "./FormList";
 
 interface DataType {
     comp: any,
@@ -32,11 +34,13 @@ export const FormFieldMap: Record<AttrType, DataType> = {
     [AttrType.SWITCH]: {
         comp: Switch
     },
-    // @TODO
-    [AttrType.STRING_LIST]: {
-        comp: Input
+    [AttrType.LIST]: {
+        comp: FormListRender
     },
     [AttrType.ICON_SELECT]: {
         comp: IconSelect
+    },
+    [AttrType.SELECT]: {
+        comp: Select,
     }
 }
