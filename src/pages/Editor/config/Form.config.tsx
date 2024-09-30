@@ -4,7 +4,7 @@ import FormRender from "@/components/FormRender";
 export default {
   label: "Form",
   key: "vol-form",
-  element: <FormRender onChange={() => {}} />,
+  element: <FormRender size="small" layout="inline" onChange={() => {}} />,
   attrs: [
     {
       label: "表单列表",
@@ -12,6 +12,10 @@ export default {
       type: AttrType.LIST,
       initVal: [],
       fieldProps: {
+        spaceProps: {
+          direction: 'vertical',
+          size: 'small'
+        },
         defaultVal: { type: AttrType.TEXT, label: "默认组件", name: "field1" },
         label: "表单列表",
         name: "attrs",
