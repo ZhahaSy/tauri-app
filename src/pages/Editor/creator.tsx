@@ -1,21 +1,24 @@
 import { PageSchemaProps } from "@/entities/Schema"
-import { genCommonComp, genPreviewComp } from "./config/commonGenarate";
+import { genPreviewComp } from "./config/commonGenarate";
 import useEditorStore from "@/store/useEditorStore";
+import classNames from "classnames";
 
 import Styles from './components/PreviewContainer.module.less'
 
 const createBySchema = (schema: PageSchemaProps[]) => {
     if (!schema.length) return null
-    const {setActiveComp, activeComp} = useEditorStore((state) => state)
+    const {setActiveComp} = useEditorStore((state) => state)
     const data = schema.map((curNode):React.ReactNode => {
-        const {children, element, dropId, id} = curNode
+        const {children, element, dropId, id, label} = curNode
 
         const mergeOnClick =  (e) => {
             setActiveComp(curNode)
+            curNode.props?.onClick?.(e)
         }
 
-        const cls = activeComp?.id === id ? Styles.active : ''
-        return genPreviewComp(element, children ? createBySchema(children) : null, {dropId: dropId, onClick: mergeOnClick, ...curNode.props, className: cls,})
+        const cls = classNames(curNode?.props?.className, Styles.componentWrapper)
+        
+        return genPreviewComp(element, children ? createBySchema(children) : null, {dropId: dropId, onClick: mergeOnClick, ...curNode.props, className: cls, componentid: id, componentlabel: label})
     })
     return data
 };

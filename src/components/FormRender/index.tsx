@@ -13,11 +13,6 @@ const FormRender: React.FC<FormRenderProps> = ({
   ...resetProps
 }) => {
   let initVal: any = {};
-  // attrs.forEach((item) => {
-  //   initVal[item.name] = item.initVal;
-  // });
-
-  if (!attrs.length) return <div>请插入组件</div>;
 
   return (
     <Form
@@ -27,9 +22,9 @@ const FormRender: React.FC<FormRenderProps> = ({
       onValuesChange={onChange}
       initialValues={initVal}
     >
-      {attrs.map((item) => {
+      {attrs.length ? attrs.map((item) => {
         return <FormItemRender attr={item} />;
-      })}
+      }) : <div>请插入组件</div>}
     </Form>
   );
 };

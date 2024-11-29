@@ -7,7 +7,7 @@ import * as path from 'path';
 export default defineConfig(async () => ({
   plugins: [react()],
   resolve: {
-    alias: { '@': path.resolve(__dirname, 'src'), '@proTree': path.resolve(__dirname, 'src-pro-tree') },
+    alias: { '@': path.resolve(__dirname, 'src'), '_T': path.resolve(__dirname, 'src-pro-tree') },
   },
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
