@@ -5,6 +5,7 @@ import { PageSchemaProps } from '@/entities/Schema';
 interface EditorStore {
   activeComp?: PageSchemaProps;
   setActiveComp: (key: PageSchemaProps) => void;
+  clearStore: () => void;
 }
 
 const  initialState = {

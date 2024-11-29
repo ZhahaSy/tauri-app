@@ -1,9 +1,14 @@
 import useEditorStore from "@/store/useEditorStore";
 import React, { useMemo } from "react";
+import Toolbar from "./toolbar";
+import { Tree } from "../../../src-pro-tree";
+import { PageSchemaProps } from "@/entities/Schema";
 
-interface BorderSelectingProps {}
+interface BorderSelectingProps {
+  treeInstance: Tree<PageSchemaProps>
+}
 
-const BorderSelecting: React.FC<BorderSelectingProps> = () => {
+const BorderSelecting: React.FC<BorderSelectingProps> = (props) => {
   const { activeComp } = useEditorStore((state) => state);
 
   const computedActiveStyle: React.CSSProperties = useMemo(() => {
@@ -20,13 +25,24 @@ const BorderSelecting: React.FC<BorderSelectingProps> = () => {
   }, [activeComp]);
 
   return (
+    <div
+      style={{
+        ...computedActiveStyle,
+        border: "2px dashed #2191f3",
+        zIndex: 2024,
+      }}
+    >
       <div
         style={{
-          ...computedActiveStyle,
-          border: "1px dashed #2191f3",
-          zIndex: 2024,
+          position: "absolute",
+          right: 0,
+          top: "-24px",
         }}
-      />
+      >
+        {/* 工具栏 */}
+        <Toolbar treeInstance={props.treeInstance} />
+      </div>
+    </div>
   );
 };
 

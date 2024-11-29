@@ -6,14 +6,16 @@ import { Empty } from "antd"
 import Styles from './PreviewContainer.module.less'
 import { EDITOR_ID } from '../constant'
 import OutlinePane from "@/components/OutlinePane"
+import { Tree } from "../../../../src-pro-tree"
 
 interface PreviewContainerProps {
-    pageSchema: PageSchemaProps[]
+    pageSchema: PageSchemaProps[];
+    treeInstance: Tree<PageSchemaProps>
 }
 
 const PreviewContainer: React.FC<PreviewContainerProps> = (props) => {
 
-    const {pageSchema} = props
+    const {pageSchema, treeInstance} = props
     const child = pageSchema ? createBySchema(pageSchema) : null
     return <Droppable id={EDITOR_ID} style={{
         display: 'block',
@@ -21,7 +23,7 @@ const PreviewContainer: React.FC<PreviewContainerProps> = (props) => {
         position:'relative'
     }}>
             {child ? <div className={Styles.previewer}>{child}</div> : <div className={Styles.empty}><Empty/></div>}
-            <OutlinePane/>
+            <OutlinePane treeInstance={treeInstance}/>
     </Droppable>
 
 }

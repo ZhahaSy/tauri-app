@@ -217,6 +217,30 @@ export class Tree<T> {
   getValueTree() {
     return this.root.getValueTree();
   }
+
+  // 通过唯一ID删除节点
+  removeNodeByUniqueId(uniqueId: string): boolean {
+    const nodeToRemove = this.findNodeByUniqueId(uniqueId);
+    
+    if (!nodeToRemove) {
+      return false;
+    }
+
+    // 如果是根节点，不允许删除
+    if (nodeToRemove === this.root) {
+      console.warn('Cannot remove root node');
+      return false;
+    }
+
+    // 获取父节点并删除
+    const parent = nodeToRemove.parent;
+    if (parent) {
+      parent.removeChild(nodeToRemove);
+      return true;
+    }
+
+    return false;
+  }
 }
 
 // 生成唯一Hash的辅助函数

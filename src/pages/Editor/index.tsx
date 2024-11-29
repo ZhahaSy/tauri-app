@@ -17,7 +17,7 @@ const Editor = () => {
 
     const id = params.get('id')
 
-    const {schema, handleDragEnd, updateSchemaProps} = useSchemaHook();
+    const {schema, handleDragEnd, updateSchemaProps, treeInstance} = useSchemaHook();
 
 
     return <Layout 
@@ -37,7 +37,7 @@ const Editor = () => {
             <Content style={{
                 background: containerBG
             }}>
-                <PreviewContainer pageSchema={schema} ></PreviewContainer>
+                <PreviewContainer pageSchema={schema} treeInstance={treeInstance} ></PreviewContainer>
             </Content>
             <Sider width='300' style={{
                 background: containerBG,

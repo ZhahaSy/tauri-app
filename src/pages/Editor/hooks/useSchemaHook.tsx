@@ -6,11 +6,51 @@ import { DragEndEvent } from "@dnd-kit/core";
 import { EDITOR_ID } from "../constant";
 
 export default () => {
-    // 使用 useRef 存储 Tree 实例，避免重渲染时重新创建
-    const treeRef = useRef<Tree<PageSchemaProps>>(new Tree<PageSchemaProps>({ id: 'root', label: '页面', key: 'root', element: '' }));
-    
-    // 使用 state 来触发重渲染
     const [, forceUpdate] = useState({});
+    
+    // 创建原始树实例
+    const originalTree = new Tree<PageSchemaProps>({ id: 'root', label: '页面', key: 'root', element: '' });
+    
+    // 创建代理包装 TreeNode 的方法
+    const wrapTreeNode = (node: TreeNode<PageSchemaProps>) => {
+        return new Proxy(node, {
+            get(target, prop) {
+                const value = target[prop as keyof TreeNode<PageSchemaProps>];
+                if (typeof value === 'function') {
+                    return function(...args: any[]) {
+                        const result = value.apply(target, args);
+                        forceUpdate({});
+                        return result;
+                    }
+                }
+                return value;
+            }
+        });
+    };
+
+    // 创建代理包装 Tree 的方法
+    const wrappedTree = new Proxy(originalTree, {
+        get(target, prop) {
+            const value = target[prop as keyof Tree<PageSchemaProps>];
+            if (prop === 'root') {
+                return wrapTreeNode(value as TreeNode<PageSchemaProps>);
+            }
+            if (typeof value === 'function') {
+                return function(...args: any[]) {
+                    const result = value.apply(target, args);
+                    if (result instanceof TreeNode) {
+                        return wrapTreeNode(result);
+                    }
+                    forceUpdate({});
+                    return result;
+                }
+            }
+            return value;
+        }
+    });
+
+    // 使用代理后的树实例
+    const treeRef = useRef<Tree<PageSchemaProps>>(wrappedTree);
 
     const handleDragEnd = (e: DragEndEvent) => {
         const {over, active} = e;
@@ -33,9 +73,6 @@ export default () => {
                     parentNode.addChild(new TreeNode(newNode, key));
                 }
             }
-            
-            // 触发重渲染
-            forceUpdate({});
         }
     }
 
@@ -47,8 +84,6 @@ export default () => {
             } else {
                 node.value.props = newData;
             }
-            // 触发重渲染
-            forceUpdate({});
         }
     }
 
