@@ -21,8 +21,12 @@ export class TreeNode<T> {
     this.children = [];
   }
 
-  // 添加子节点方法
-  addChild(node: TreeNode<T>): void {
+  // 重载 addChild 方法以支持两种参数类型
+  addChild(value: T): TreeNode<T>;
+  addChild(node: TreeNode<T>): TreeNode<T>;
+  addChild(valueOrNode: T | TreeNode<T>): TreeNode<T> {
+    const node = valueOrNode instanceof TreeNode ? valueOrNode : new TreeNode(valueOrNode);
+    
     this.children.push(node);      // 将新节点添加到子节点数组
     node.parent = this;            // 设置新节点的父节点
 
@@ -35,6 +39,8 @@ export class TreeNode<T> {
       node.prev = null;
     }
     node.next = null;
+
+    return node;  // 返回新创建或添加的节点
   }
 
   // 移除子节点方法，支持通过值或唯一标识符删除
@@ -74,10 +80,14 @@ export class TreeNode<T> {
     }
   }
 
-  // 查找具有特定值的直接子节点
-  findChild(value: T): TreeNode<T> | null {
+  // 查找直接子节点，支持通过值或唯一标识符查找
+  findChild(nodeOrUniqueId: T | string): TreeNode<T> | null {
     for (const child of this.children) {
-      if (child.value === value) {
+      if (typeof nodeOrUniqueId === 'string') {
+        if (child.uniqueId === nodeOrUniqueId) {
+          return child;
+        }
+      } else if (child.value === nodeOrUniqueId) {
         return child;
       }
     }
@@ -91,9 +101,14 @@ export class TreeNode<T> {
     });
   }
 
-  // 在当前节点之前插入新节点
-  insertNodeBefore(node: TreeNode<T>): void {
+  // 重载声明
+  insertNodeBefore(value: T): void;
+  insertNodeBefore(node: TreeNode<T>): void;
+  insertNodeBefore(valueOrNode: T | TreeNode<T>): void {
     if (!this.parent) return;  // 如果没有父节点，无法插入
+
+    // 创建或使用节点
+    const node = valueOrNode instanceof TreeNode ? valueOrNode : new TreeNode(valueOrNode);
 
     const index = this.parent.children.indexOf(this);
     if (index === -1) return;
@@ -113,9 +128,14 @@ export class TreeNode<T> {
     this.parent.children.splice(index, 0, node);
   }
 
-  // 在当前节点之后插入新节点
-  insertNodeAfter(node: TreeNode<T>): void {
+  // 重载声明
+  insertNodeAfter(value: T): void;
+  insertNodeAfter(node: TreeNode<T>): void;
+  insertNodeAfter(valueOrNode: T | TreeNode<T>): void {
     if (!this.parent) return;
+
+    // 创建或使用节点
+    const node = valueOrNode instanceof TreeNode ? valueOrNode : new TreeNode(valueOrNode);
 
     const index = this.parent.children.indexOf(this);
     if (index === -1) return;

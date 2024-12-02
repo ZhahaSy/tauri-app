@@ -85,6 +85,7 @@ export default () => {
                 node.value.props = newData;
             }
         }
+        forceUpdate({})
     }
 
     // 将树结构转换为扁平数组（用于兼容现有代码）
