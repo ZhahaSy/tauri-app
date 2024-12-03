@@ -23,7 +23,7 @@ const FormRender: React.FC<FormRenderProps> = ({
       initialValues={initVal}
     >
       {attrs.length ? attrs.map((item) => {
-        return <FormItemRender attr={item} />;
+        return <FormItemRender key={item.name} attr={item} />;
       }) : <div>请插入组件</div>}
     </Form>
   );

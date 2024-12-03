@@ -30,7 +30,7 @@ export const FormListRender: React.FC<FormListRenderProps> = ({
             <Space
               className={spaceClassNames}
               {...spaceProps}
-              key={key}
+              key={key || name}
               style={{ display: "flex", paddingLeft: "12px" }}
               align="baseline"
             >

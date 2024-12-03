@@ -1,28 +1,58 @@
 import useEditorStore from "@/store/useEditorStore";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Toolbar from "./toolbar";
 import { Tree } from "../../../src-pro-tree";
 import { PageSchemaProps } from "@/entities/Schema";
+import { useMutationObserver } from "ahooks";
 
 interface BorderSelectingProps {
-  treeInstance: Tree<PageSchemaProps>
+  treeInstance: Tree<PageSchemaProps>;
 }
+
+const defaultStyle: React.CSSProperties = {
+  display: "none",
+  position: "absolute",
+};
 
 const BorderSelecting: React.FC<BorderSelectingProps> = (props) => {
   const { activeComp } = useEditorStore((state) => state);
 
-  const computedActiveStyle: React.CSSProperties = useMemo(() => {
-    if (!activeComp) return { display: "none", position: "absolute" };
+  const curElement = useMemo(() => {
+    if (activeComp?.id) {
+      return document.querySelector(`*[componentid='${activeComp?.id}']`);
+    }
+    return null;
+  }, [activeComp]);
 
-    const curNode = document.querySelector(`*[componentid='${activeComp.id}']`);
+  const [computedActiveStyle, setComputedActiveStyle] = useState<React.CSSProperties>(defaultStyle);
+
+  const config = { attributes: true, childList: true, subtree: true };
+
+  const calculateElementStyle = (element: HTMLElement | null): React.CSSProperties => {
+    if (!element) return defaultStyle;
+    
     return {
       position: "absolute",
-      left: (curNode as HTMLElement)?.offsetLeft,
-      top: (curNode as HTMLElement)?.offsetTop,
-      width: (curNode as HTMLElement)?.offsetWidth,
-      height: (curNode as HTMLElement)?.offsetHeight,
+      left: element.offsetLeft,
+      top: element.offsetTop,
+      width: element.offsetWidth,
+      height: element.offsetHeight,
     };
-  }, [activeComp]);
+  };
+
+  useEffect(() => {
+    const element = curElement as HTMLElement | null;
+    setComputedActiveStyle(calculateElementStyle(element));
+
+    if (!element) return;
+
+    const observer = new MutationObserver(() => {
+      setComputedActiveStyle(calculateElementStyle(element));
+    });
+
+    observer.observe(element, config);
+    return () => observer.disconnect();
+  }, [curElement]);
 
   return (
     <div

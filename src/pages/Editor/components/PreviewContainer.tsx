@@ -16,7 +16,7 @@ interface PreviewContainerProps {
 const PreviewContainer: React.FC<PreviewContainerProps> = (props) => {
 
     const {pageSchema, treeInstance} = props
-    const child = pageSchema ? createBySchema(pageSchema) : null
+    const child = pageSchema ? createBySchema(pageSchema, treeInstance) : null
     return <Droppable id={EDITOR_ID} style={{
         display: 'block',
         height: 'calc(100vh - 28px)',
