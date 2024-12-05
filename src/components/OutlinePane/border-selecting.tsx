@@ -3,7 +3,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import Toolbar from "./toolbar";
 import { Tree } from "../../../src-pro-tree";
 import { PageSchemaProps } from "@/entities/Schema";
-import { useMutationObserver } from "ahooks";
 
 interface BorderSelectingProps {
   treeInstance: Tree<PageSchemaProps>;

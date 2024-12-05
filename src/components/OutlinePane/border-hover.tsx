@@ -3,15 +3,16 @@ import React, { useMemo } from "react";
 interface BorderHoverProps {
 }
 
+const findClosestComponent = (element: HTMLElement | null): HTMLElement | null => {
+  if (!element) return null;
+  if (element.hasAttribute('componentid')) return element;
+  return findClosestComponent(element.parentElement);
+};
+
 const BorderHover: React.FC<BorderHoverProps> = () => {
   const [hoverElement, setHoverElement] = React.useState<HTMLElement | null>(null);
 
   React.useEffect(() => {
-    const findClosestComponent = (element: HTMLElement | null): HTMLElement | null => {
-      if (!element) return null;
-      if (element.hasAttribute('componentid')) return element;
-      return findClosestComponent(element.parentElement);
-    };
 
     const handleMouseEnter = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
