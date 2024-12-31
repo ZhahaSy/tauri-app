@@ -22,7 +22,7 @@ const PreviewContainer: React.FC<PreviewContainerProps> = (props) => {
         height: 'calc(100vh - 28px)',
         position:'relative'
     }}>
-            {child ? <div className={Styles.previewer}>{child}</div> : <div className={Styles.empty}><Empty/></div>}
+            {child ? <div className={Styles.previewer}>{child}</div> : <div className={Styles.empty}><Empty description='请拖入组件'/></div>}
             <OutlinePane treeInstance={treeInstance}/>
     </Droppable>
 

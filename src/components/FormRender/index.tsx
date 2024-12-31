@@ -5,11 +5,13 @@ import FormItemRender from "./FormItemRender";
 interface FormRenderProps extends FormProps {
   attrs?: CompAttr[];
   onChange: (values: any) => void;
+  emptyText?: string;
 }
 
 const FormRender: React.FC<FormRenderProps> = ({
   attrs = [],
   onChange,
+  emptyText,
   ...resetProps
 }) => {
   let initVal: any = {};
@@ -24,7 +26,7 @@ const FormRender: React.FC<FormRenderProps> = ({
     >
       {attrs.length ? attrs.map((item) => {
         return <FormItemRender key={item.name} attr={item} />;
-      }) : <div>请插入组件</div>}
+      }) : <div>{emptyText || '请增加组件'}</div>}
     </Form>
   );
 };

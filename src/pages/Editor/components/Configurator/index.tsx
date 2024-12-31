@@ -15,7 +15,7 @@ const Configurator: React.FC<ConfiguratorProps> =  ({updateSchemaProps}) => {
     }
     
     return <div style={{padding: '10px'}}>
-        <FormRender form={form} attrs={activeComp?.attrs || []} onChange={handleChange} />
+        <FormRender emptyText="暂无配置" form={form} attrs={activeComp?.attrs || []} onChange={handleChange} />
     </div>
 }
 

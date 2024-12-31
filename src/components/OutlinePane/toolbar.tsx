@@ -12,8 +12,6 @@ const Toolbar: FC<ToolbarProps> = ({ treeInstance }) => {
   const { activeComp, clearStore, setActiveComp } = useEditorStore(
     (state) => state
   );
-  console.log(activeComp);
-
   const onDelete = () => {
     if (activeComp && treeInstance) {
       treeInstance?.removeNodeByUniqueId(activeComp.id);

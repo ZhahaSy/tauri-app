@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CustomTitleBar from '../components/custom-title-bar'
+import CustomTitleBar from '../components/TitleBar'
 
 import { Outlet } from 'react-router-dom';
 
