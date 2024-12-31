@@ -1,6 +1,6 @@
 import { useDraggable } from "@dnd-kit/core";
 import { PositionType } from "antd/es/image/style";
-import { PropsWithChildren } from "react";
+import { memo, PropsWithChildren } from "react";
 
 interface DraggableProps {
   id: string,
@@ -24,5 +24,4 @@ const Draggable: React.FC<PropsWithChildren<DraggableProps>> = (props) => {
     </button>
   );
 }
-
-export default Draggable
+export default memo(Draggable)

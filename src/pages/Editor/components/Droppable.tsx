@@ -7,12 +7,13 @@ interface DroppableProps {
 }
 
 const  Droppable: React.FC<PropsWithChildren<DroppableProps>> = (props) => {
-  const { isOver, setNodeRef } = useDroppable({
+  const { setNodeRef } = useDroppable({
     id: props.id,
   });
   
   const style = {
-    background: isOver ? "gray" : undefined,
+    minWidth: '500px',
+    minHeight: '20px',
     ...props.style,
   };
 

@@ -8,6 +8,8 @@ import PreviewContainer from "./components/PreviewContainer"
 import { DndContext } from "@dnd-kit/core";
 import useSchemaHook from "./hooks/useSchemaHook"
 
+import {debounce} from 'lodash'
+
 const {Content, Sider} = Layout;
 
 const containerBG = '#fff'
@@ -19,6 +21,12 @@ const Editor = () => {
 
     const {schema, handleDragEnd, updateSchemaProps, treeInstance} = useSchemaHook();
 
+    const handleDragStart = (e) => {
+        console.log('handleDragStart', e);
+    }
+    const handleDragMove = debounce((e) => {
+        console.log('handleDragMove', e.active.id, e.over?.id);
+    }, 100)
 
     return <Layout 
             style={{
@@ -26,7 +34,7 @@ const Editor = () => {
                 height: '100%'
             }}
     >
-        <DndContext onDragEnd={handleDragEnd}>
+        <DndContext onDragStart={handleDragStart} onDragMove={handleDragMove} onDragEnd={handleDragEnd}>
             <Sider width='300' style={{
                 background: containerBG,
                 marginRight: '10px',

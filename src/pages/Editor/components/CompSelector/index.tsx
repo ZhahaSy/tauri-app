@@ -15,6 +15,9 @@ const compList = [
     },
     {
         label: 'Form',
+    },
+    {
+        label: 'Flex'
     }
 ]
 

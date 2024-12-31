@@ -1,12 +1,13 @@
 import { PageSchemaProps } from "@/entities/Schema"
 import Droppable from "./Droppable"
-import createBySchema from "../creator"
+import CreateBySchema from "../creator"
 import { Empty } from "antd"
 
 import Styles from './PreviewContainer.module.less'
 import { EDITOR_ID } from '../constant'
 import OutlinePane from "@/components/OutlinePane"
 import { Tree } from "../../../../src-pro-tree"
+import { memo } from "react"
 
 interface PreviewContainerProps {
     pageSchema: PageSchemaProps[];
@@ -16,7 +17,7 @@ interface PreviewContainerProps {
 const PreviewContainer: React.FC<PreviewContainerProps> = (props) => {
 
     const {pageSchema, treeInstance} = props
-    const child = pageSchema ? createBySchema(pageSchema, treeInstance) : null
+    const child = pageSchema ? <CreateBySchema schema={pageSchema} treeInstance={treeInstance} /> : null
     return <Droppable id={EDITOR_ID} style={{
         display: 'block',
         height: 'calc(100vh - 28px)',
@@ -27,5 +28,4 @@ const PreviewContainer: React.FC<PreviewContainerProps> = (props) => {
     </Droppable>
 
 }
-
-export default PreviewContainer
+export default memo(PreviewContainer)
